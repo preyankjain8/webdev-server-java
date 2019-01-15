@@ -1,0 +1,29 @@
+.table-heading {
+    background: Gainsboro; 
+}
+
+.empty-column {
+    background: Gainsboro;
+    width: 10%;
+}
+
+.title{
+	width: 35%;
+}
+
+#course-manager {
+	font-size: x-large;
+	color: white;
+	font-weight: bold;
+}
+
+#top-row{
+	background: DodgerBlue;
+	height: 50px;
+	padding: 5px;
+}
+
+#new-course-title{
+	width: 100%;
+	font-weight: bold;
+}
