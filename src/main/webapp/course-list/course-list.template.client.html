@@ -5,23 +5,28 @@
   href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 <link rel="stylesheet"
       href="course-list.style.client.css"/>
+<link href=
+"https://use.fontawesome.com/releases/v5.3.1/css/all.css" rel="stylesheet">
 </head>
 <body>
 	<div class="row"
 		 id="top-row">
-      <div class="col-2">
-        
+      <div class="col-1">
+        <i class="fa fa-2x fa-bars" aria-hidden="true"></i>
       </div>
       <div class="col-2"
       	   id="course-manager">
         Course Manager
       </div>
-      <div class="col-6">
+      <div class="col-7">
         <input id="new-course-title"
         		placeholder="New Course Title">
       </div>
       <div class="col-2">
-
+      	<span class="fa-stack wd-bottom-right">
+			<i class="fas fa-circle fa-stack-2x"></i>
+			<i class="fas fa-plus fa-stack-1x fa-inverse"></i>
+		</span>		
       </div>
     </div>
 	<table class="table">
@@ -38,18 +43,20 @@
   		<tbody>
     		<tr>
     			<td class="empty-column"></td>
-           		<td>CS5500 Software Engineering Graduate</td>
+           		<td><i class="fas fa-file-alt"></i>
+           		CS5500 Software Engineering Graduate</td>
            		<td>me</td>
            		<td>6:45 PM</td>
-           		<td>Delete</td>
+           		<td><i class="fas fa-trash-alt"></i></td>
            		<td class="empty-column"></td>
        		</tr>
        		<tr>
     			<td class="empty-column"></td>
-           		<td>CS5610 Web Development Graduate </td>
+           		<td><i class="fas fa-file-alt"></i>
+           		CS5610 Web Development Graduate </td>
            		<td>me</td>
            		<td>6:45 PM</td>
-           		<td>Delete</td>
+           		<td><i class="fas fa-trash-alt"></i></td>
            		<td class="empty-column"></td>
        		</tr>
   		</tbody>

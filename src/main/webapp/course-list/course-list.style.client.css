@@ -11,6 +11,16 @@
 	width: 35%;
 }
 
+.wd-bottom-right {
+	color: red; 
+	position: fixed;
+}
+
+.fa-bars{
+	color: white;
+	padding-left: 5px;
+}
+
 #course-manager {
 	font-size: x-large;
 	color: white;
