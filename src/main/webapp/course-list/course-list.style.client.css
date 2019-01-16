@@ -11,6 +11,11 @@
 	width: 35%;
 }
 
+.wd-bottom-right {
+	color: red; 
+	position: fixed;
+}
+
 #course-manager {
 	font-size: x-large;
 	color: white;
