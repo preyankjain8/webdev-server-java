@@ -1,3 +1,15 @@
+.container-fluid{
+	background: gray;
+}
+
+.input-fld{
+	background: silver;
+}
+
+.nav-link{
+	color: white;
+}
+
 .card{
 	padding: 10px;
 }
@@ -22,7 +34,7 @@
 }
 
 #top-row{
-	background: silver;
+	background: gray;
 }
 
 .side-nav{
