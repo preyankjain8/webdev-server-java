@@ -7,13 +7,25 @@
     width: 10%;
 }
 
+.empty-row{
+	color: Gainsboro;
+    height: 20px;
+}
+
 .title{
 	width: 35%;
 }
 
-.wd-bottom-right {
+.wd-top-row {
 	color: red; 
 	position: fixed;
+}
+
+.wd-bottom-right {
+	color: red;
+	position: fixed;
+	bottom: 10px;
+	left: 85%;
 }
 
 .fa-bars{
