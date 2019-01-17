@@ -21,6 +21,10 @@
 	color: red;
 }
 
+#top-row{
+	background: silver;
+}
+
 .side-nav{
 	margin-top: 20px;
 }
