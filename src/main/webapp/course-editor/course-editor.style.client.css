@@ -1,0 +1,30 @@
+.card{
+	padding: 10px;
+}
+
+.fa-window-close{
+	padding-left: 5px;
+}
+
+.widget-field{
+	width: 100%;
+}
+.full-width-div{
+	width: 100%;
+}
+
+.fa-toggle-off{
+	padding: 5px;
+}
+
+.fa-plus-square{
+	color: red;
+}
+
+.side-nav{
+	margin-top: 20px;
+}
+
+.fa-window-close{
+	color: red;
+}
