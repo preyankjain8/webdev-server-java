@@ -1,0 +1,65 @@
+<html>
+<head>
+<title>User Admin</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+
+<script
+  src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script src="../services/user.service.client.js"></script>
+<script src="user-admin.component.client.js"></script>
+
+<link href=
+"https://use.fontawesome.com/releases/v5.3.1/css/all.css" rel="stylesheet">
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js">
+</script>
+</head>
+<body>
+  <div class="container-fluid">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Username</th>
+        <th>Password</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Role</th>
+        <th>&nbsp;</th>
+      </tr>
+      <tr>
+        <th><input id="usernameFld" class="form-control" placeholder="username" /></th>
+        <th><input class="form-control" placeholder="password" /></th>
+        <th><input id="firstNameFld" class="form-control" placeholder="first name" /></th>
+        <th><input class="form-control" placeholder="last name" /></th>
+        <th><select class="form-control"><option>Faculty</option>
+            <option>Student</option>
+            <option>Admin</option></select></th>
+        <th>
+        <button class="btn btn-primary-outline">
+        <i class="fa fa-search" aria-hidden="true"></i></button>
+          <button class="btn btn-primary-outline">
+          <i class="fa fa-plus" aria-hidden="true"></i></button>
+          <button class="btn btn-primary-outline">
+          <i class="fa fa-check" aria-hidden="true"></i></button>
+          </th>
+      </tr>
+      <tr class="wbdv-template">
+        <td class="username"></td>
+        <td>****</td>
+        <td class="firstName"></td>
+        <td class="lastName"></td>
+        <td>Faculty</td>
+        <td>
+        <button class="btn btn-primary-outline">
+        <i class="fa fa-times" aria-hidden="true"></i></button>
+        <button class="btn btn-primary-outline">
+        <i class="fa fa-pencil-square" aria-hidden="true"></i></button>
+      </tr>
+    </thead>
+    <tbody>
+    </tbody>
+  </table>
+  </div>
+</body>
+</html>
