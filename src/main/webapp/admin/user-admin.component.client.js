@@ -29,8 +29,10 @@
         for(var u=0; u<users.length; u++) {
             console.log(users[u]);
             var clone = $userRowTemplate.clone();
-            clone.find(".username").html(users[u].username);
-            clone.find(".firstName").html(users[u].firstName);
+            clone.find(".wbdv-username").html(users[u].username);
+            clone.find(".wbdv-first-name").html(users[u].firstName);
+            clone.find(".wbdv-last-name").html(users[u].lastName);
+            clone.find(".wbdv-role").html(users[u].role);
             $tbody.append(clone);
         }
     }
