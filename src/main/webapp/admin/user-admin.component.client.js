@@ -66,6 +66,7 @@
             $tbody.append(clone);
             $("#template-row").hide();
         });
+    	resetForm();
     }
     function findAllUsers() {  }
     function findUserById(id) {
@@ -104,6 +105,7 @@
         clone.find(".wbdv-last-name").html(userObj.lastName);
         clone.find(".wbdv-role").html(userObj.role);
         $(".wbdv-update").attr("id","wbdv-update");
+        resetForm();
     }
     function renderUsers(users) {
     	$('[id="row"]').remove();
@@ -151,6 +153,15 @@
             $tbody.append(clone);
         }
     	$("#template-row").hide();
+    	resetForm();
+    }
+    
+    function resetForm() {
+    	$usernameFld.val('');
+    	$passwordFld.val('');
+		$firstNameFld.val('');
+		$lastNameFld.val('');
+		$roleFld.val('');
     }
     
 })();
