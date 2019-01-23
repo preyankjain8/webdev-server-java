@@ -49,5 +49,20 @@ public class UserService {
 		userList.add(user);
 		return user;
 	}
+	@PostMapping("/api/user/{userId}")
+	@ResponseBody
+	public User updateUser(@RequestBody User user, @PathVariable("userId") Integer id) {
+		User userToUpd = null;
+		for(User u : userList) {
+			if (u.getId() == id.intValue()) {
+				userList.remove(u);
+				break;
+			}
+		}
+		userToUpd = user;
+		userToUpd.setId(id);
+		userList.add(userToUpd);
+		return userToUpd;
+	}
 	
 }

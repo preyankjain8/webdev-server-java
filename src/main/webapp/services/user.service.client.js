@@ -24,6 +24,18 @@ function AdminUserServiceClient() {
             });
     }
     function findUserById(userId, callback) { }
-    function updateUser(userId, user, callback) { }
+    
+    function updateUser(userId, user) {
+    	return fetch(this.url+"/"+userId, {
+            method: 'post',
+            body: JSON.stringify(user),
+            headers: {
+                'content-type': 'application/json'
+            }
+    	}).then(function(response) {
+            return response.json();
+        });
+    }
+    
     function deleteUser(userId, callback) { }
 }

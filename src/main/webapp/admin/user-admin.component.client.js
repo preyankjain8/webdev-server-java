@@ -22,6 +22,9 @@
         $(".wbdv-edit").click(function(event) {
         	selectUser(event);
         });
+        $(".wbdv-update").click(function(event) {
+        	updateUser(event);
+        });
     }
     function createUser() {
     	var userObj = new User($usernameFld.val(),
@@ -44,15 +47,29 @@
     }
     function deleteUser() {  }
     function selectUser(event) {
-    	var clone = $(event.currentTarget).parent().closest('tr').clone();
+    	var clone = $(event.currentTarget).parent().closest('tr');
     	$usernameFld.val(clone.find(".wbdv-username").html());
     	$passwordFld.val(clone.find(".wbdv-password").html());
     	$firstNameFld.val(clone.find(".wbdv-first-name").html());
     	$lastNameFld.val(clone.find(".wbdv-last-name").html());
     	$(".wbdv-update").attr("id",$(event.currentTarget).attr('id'));
+    	//clone.remove();
     }
-    function updateUser() {  }
-    function renderUser(user) {  }
+    function updateUser(event) {
+    	var userObj = new User($usernameFld.val(),
+    						   $passwordFld.val(),
+    						   $firstNameFld.val(),
+    						   $lastNameFld.val());
+    	userService.updateUser($(event.currentTarget).attr('id'), userObj)
+    	.then(renderUser)
+    }
+    function renderUser(userObj) {
+    	var clone = $('#row'+userObj.id);
+    	clone. find(".wbdv-username").html(userObj.username);
+        clone.find(".wbdv-first-name").html(userObj.firstName);
+        clone.find(".wbdv-last-name").html(userObj.lastName);
+        $tbody.append(clone);
+    }
     function renderUsers(users) {
     	for(var u=0; u<users.length; u++) {
             var userObj = new User(users[u].username, 
@@ -63,7 +80,8 @@
             clone.find(".wbdv-username").html(userObj.username);
             clone.find(".wbdv-first-name").html(userObj.firstName);
             clone.find(".wbdv-last-name").html(userObj.lastName);
-            clone.find(".wbdv-edit").attr("id", users[u].id)
+            clone.attr("id", "row"+users[u].id);
+            clone.find(".wbdv-edit").attr("id", users[u].id);
             $tbody.append(clone);
         }
     }
