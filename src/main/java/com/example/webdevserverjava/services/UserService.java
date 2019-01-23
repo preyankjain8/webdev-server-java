@@ -14,8 +14,8 @@ import com.example.webdevserverjava.model.User;
 
 @RestController
 public class UserService {
-	User alice = new User(123, "alice", "Alice", "Wonderland");
-	User bob   = new User(234, "bob", "Bob", "Marley");
+	User alice = new User(123, "alice", "Alice", "Wonderland", "Faculty");
+	User bob   = new User(234, "bob", "Bob", "Marley", "Student");
 	java.util.List<User> userList = new ArrayList<User>();
 	UserService(){
 		userList.add(alice);
@@ -45,7 +45,7 @@ public class UserService {
 	@PostMapping("/api/user")
 	@ResponseBody
 	public User createUser(@RequestBody User user) {
-		user.setId(456);
+		user.setId(userList.get(userList.size()-1).getId() + 1);
 		userList.add(user);
 		return user;
 	}
@@ -63,6 +63,48 @@ public class UserService {
 		userToUpd.setId(id);
 		userList.add(userToUpd);
 		return userToUpd;
+	}
+	
+	@PostMapping("/api/user/delete/{userId}")
+	@ResponseBody
+	public void deleteUser(@PathVariable("userId") Integer id) {
+		for(User u : userList) {
+			if (u.getId() == id.intValue()) {
+				userList.remove(u);
+				break;
+			}
+		}
+	}
+	
+	@PostMapping("/api/user/search")
+	@ResponseBody
+	public User[] searchUser(@RequestBody User user) {
+		java.util.List<User> tempUserList = new ArrayList<User>();
+		for(User u : userList) {
+			if (user.getUsername() != "" && !u.getUsername().toLowerCase().contains(user.getUsername().toLowerCase())) {
+				continue;
+			}
+			if (user.getFirstName() != "" && !u.getFirstName().toLowerCase().contains(user.getFirstName().toLowerCase())) {
+				continue;
+			}
+			if (user.getLastName() != "" && !u.getLastName().toLowerCase().contains(user.getLastName().toLowerCase())) {
+				continue;
+			}
+			if (user.getRole() != "" && !u.getRole().toLowerCase().contains(user.getRole().toLowerCase())) {
+				continue;
+			}
+			if (user.getPassword() != "" && !u.getPassword().toLowerCase().contains(user.getPassword().toLowerCase())) {
+				continue;
+			}
+			tempUserList.add(u);
+		}
+		User[] userArr = new User[tempUserList.size()];
+		int index = 0;
+		for (User us : tempUserList) {
+			userArr[index] = us;
+			index++;
+		}
+		return userArr;
 	}
 	
 }
