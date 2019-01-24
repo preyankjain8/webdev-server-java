@@ -50,7 +50,12 @@ public class UserService {
 				return new User();
 			}
 		}
-		user.setId(userList.get(userList.size()-1).getId() + 1);
+		if(!userList.isEmpty()) {
+			user.setId(userList.get(userList.size()-1).getId() + 1);
+		}
+		else {
+			user.setId(1);
+		}
 		userList.add(user);
 		return user;
 	}
