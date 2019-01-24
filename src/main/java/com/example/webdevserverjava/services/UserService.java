@@ -45,6 +45,11 @@ public class UserService {
 	@PostMapping("/api/user")
 	@ResponseBody
 	public User createUser(@RequestBody User user) {
+		for (User u : userList) {
+			if(u.getUsername().equals(user.getUsername())) {
+				return new User();
+			}
+		}
 		user.setId(userList.get(userList.size()-1).getId() + 1);
 		userList.add(user);
 		return user;

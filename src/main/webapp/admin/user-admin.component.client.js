@@ -46,6 +46,9 @@
     }
     
     function createUser() {
+    	if(!checkForm()){
+    		return
+    	}
     	var userObj = new User($usernameFld.val(),
 				   $passwordFld.val(),
 				   $firstNameFld.val(),
@@ -53,6 +56,10 @@
 				   $roleFld.val());
     	userService
         .createUser(userObj).then(function(user){
+        	if(user.id == null){
+        		alert("username already taken, please select a different username!")
+        		return;
+        	}
         	$("#template-row").show();
         	$userRowTemplate = $("#template-row");
         	var clone = $userRowTemplate.clone(true,true);
@@ -90,6 +97,9 @@
     	//clone.remove();
     }
     function updateUser(event) {
+    	if(!checkForm()){
+    		return
+    	}
     	var userObj = new User($usernameFld.val(),
     						   $passwordFld.val(),
     						   $firstNameFld.val(),
@@ -129,6 +139,10 @@
     }
     
     function renderSearchedUsers(users) {
+    	if(users.length == 0){
+    		alert("No user(s) found!")
+    		return;
+    	}
     	$('#wbdv-userTable > tbody  > tr').each(function() {
     		var id = $(this).attr("id");
     		if(id.startsWith("row") && $(this).is(":visible")){
@@ -162,6 +176,32 @@
 		$firstNameFld.val('');
 		$lastNameFld.val('');
 		$roleFld.val('');
+    }
+    
+    function checkForm() {
+    	var flag = false;
+    	if($usernameFld.val() == ""){
+    		flag = true;
+    	}
+    	if($passwordFld.val() == ""){
+    		flag = true;
+    	}
+    	if($firstNameFld.val() == ""){
+    		flag = true;
+    	}
+    	if($lastNameFld.val() == ""){
+    		flag = true;
+    	}
+    	if($roleFld.val() == ""){
+    		flag = true;
+    	}
+    	if (flag == true){
+    		alert("All the fields are mandatory!")
+    		return false;
+    	}
+    	else{
+    		return true;
+    	}
     }
     
 })();
