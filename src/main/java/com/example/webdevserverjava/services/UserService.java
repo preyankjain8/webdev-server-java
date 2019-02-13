@@ -3,6 +3,8 @@ package com.example.webdevserverjava.services;
 import java.awt.List;
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,8 +23,16 @@ public class UserService {
 		userList.add(alice);
 		userList.add(bob);
 	}
-	//User[] users = {alice, bob};
-
+	
+	@PostMapping("/api/register")
+	public User register (@RequestBody User newUser,
+				HttpSession session) {
+		session.setAttribute("currentUser", newUser);
+		return newUser;
+	}
+	
+	
+	
 	@GetMapping("/api/user")
 	public User[] findAllUser() {
 		User[] userArray = new User[userList.size()];
