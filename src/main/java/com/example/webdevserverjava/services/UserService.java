@@ -1,9 +1,8 @@
 package com.example.webdevserverjava.services;
 
-import java.awt.List;
+import java.util.List;
 import java.time.Instant;
 import java.util.ArrayList;
-import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
 
@@ -20,7 +19,7 @@ import com.example.webdevserverjava.model.User;
 public class UserService {
 	User alice = new User(123, "alice", "123", "Alice", "Wonderland", "Faculty");
 	User bob   = new User(234, "bob", "345", "Bob", "Marley", "Student");
-	java.util.List<User> usersList = new ArrayList<User>();
+	List<User> usersList = new ArrayList<User>();
 	UserService(){
 		usersList.add(alice);
 		usersList.add(bob);
@@ -29,6 +28,11 @@ public class UserService {
 	@PostMapping("/api/register")
 	public User register (@RequestBody User newUser,
 				HttpSession session) {
+		
+		for (User user : usersList) {
+			if (user.getUsername().equals(newUser.getUsername()))
+				return null;
+		}
 		session.setAttribute("currentUser", newUser);
 		newUser.setId(Instant.now().getNano());
 		usersList.add(newUser);
@@ -50,11 +54,30 @@ public class UserService {
 		for (User user : usersList) {
 			if (user.getUsername().equals(newUser.getUsername())
 					&& user.getPassword().equals(newUser.getPassword())){
-				session.setAttribute("currentUser", newUser);
+				session.setAttribute("currentUser", user);
 				return user;
 			}
 		}
 		
+		return null;
+	}
+	
+	@PostMapping("/api/logout")
+	public void logout (HttpSession session) {
+		session.invalidate();
+	}
+	
+	@GetMapping("/api/users")
+	public List<User> findAllUsers () {
+		return usersList;
+	}
+	
+	@GetMapping("/api/users/{id}")
+	public User findUserById (@PathVariable("id") Integer id) {
+		for(User user: usersList) {
+			if(id == user.getId().intValue())
+				return user;
+		}
 		return null;
 	}
 	
@@ -70,7 +93,7 @@ public class UserService {
 		}
 		return userArray;
 	}
-	@GetMapping("/api/user/{userId}")
+	/*@GetMapping("/api/user/{userId}")
 	public User findUserById(
 			@PathVariable("userId") Integer id) {
 		for(User user: usersList) {
@@ -78,7 +101,7 @@ public class UserService {
 				return user;
 		}
 		return null;
-	}
+	}*/
 	@PostMapping("/api/user")
 	@ResponseBody
 	public User createUser(@RequestBody User user) {
@@ -126,7 +149,7 @@ public class UserService {
 	@PostMapping("/api/user/search")
 	@ResponseBody
 	public User[] searchUser(@RequestBody User user) {
-		java.util.List<User> tempUserList = new ArrayList<User>();
+		List<User> tempUserList = new ArrayList<User>();
 		for(User u : usersList) {
 			if (user.getUsername() != "" && !u.getUsername().toLowerCase().contains(user.getUsername().toLowerCase())) {
 				continue;
