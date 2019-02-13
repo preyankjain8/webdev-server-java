@@ -8,16 +8,16 @@ public class Lesson {
 	private Module module;
 	private List<Topic> topics;
 	
-	public Lesson(Integer id, String title, List<Topic> topics, Module module) {
+	public Lesson(Integer id, String title, List<Topic> topics) {
 		this.id = id;
 		this.title = title;
 		this.topics = topics;
-		this.setModule(module);
 	}
 	
-	public Lesson(Integer id, String title) {
+	public Lesson(Integer id, String title, Module module) {
 		this.id = id;
 		this.title = title;
+		this.module = module;
 	}
 	
 	public Integer getId() {
