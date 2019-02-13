@@ -1,14 +1,14 @@
 package com.example.webdevserverjava.model;
 
-public class Faculty extends User{
+public class Student {
 	private Integer id;
 	private String username;
 	private String password;
 	private String firstName;
 	private String lastName;
 	
-	public Faculty() {}
-	public Faculty(int id, String username, String password, String firstName, String lastName) {
+	public Student() {}
+	public Student(int id, String username, String password, String firstName, String lastName) {
 		this.id = id;
 		this.password = password;
 		this.username = username;
