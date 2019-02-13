@@ -13,6 +13,11 @@ public class Topic {
 		this.widgets = widgets;
 	}
 	
+	public Topic(Integer id, String title) {
+		this.id = id;
+		this.title = title;
+	}
+	
 	public Integer getId() {
 		return id;
 	}

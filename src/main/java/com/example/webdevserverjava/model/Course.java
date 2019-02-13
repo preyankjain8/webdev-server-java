@@ -13,6 +13,11 @@ public class Course {
 		this.modules = modules;
 	}
 	
+	public Course(Integer id, String title) {
+		this.id = id;
+		this.title = title;
+	}
+	
 	public Integer getId() {
 		return id;
 	}

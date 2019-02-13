@@ -13,6 +13,11 @@ public class Lesson {
 		this.topics = topics;
 	}
 	
+	public Lesson(Integer id, String title) {
+		this.id = id;
+		this.title = title;
+	}
+	
 	public Integer getId() {
 		return id;
 	}
