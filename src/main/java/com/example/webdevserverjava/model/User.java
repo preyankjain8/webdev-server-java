@@ -1,5 +1,7 @@
 package com.example.webdevserverjava.model;
 
+import java.util.List;
+
 public class User {
 	private Integer id;
 	private String username;
@@ -7,6 +9,7 @@ public class User {
 	private String firstName;
 	private String lastName;
 	private String role;
+	
 	public User() {}
 	public User(int id, String username, String password, String firstName, String lastName, String role) {
 		this.id = id;

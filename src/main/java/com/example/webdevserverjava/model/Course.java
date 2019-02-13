@@ -5,6 +5,7 @@ import java.util.List;
 public class Course {
 	private Integer id;
 	private String title;
+	private User author;
 	private List<Module> modules;
 	
 	public Course(Integer id, String title, List<Module> modules) {
@@ -13,9 +14,10 @@ public class Course {
 		this.modules = modules;
 	}
 	
-	public Course(Integer id, String title) {
+	public Course(Integer id, String title, User author) {
 		this.id = id;
 		this.title = title;
+		this.setAuthor(author);
 	}
 	
 	public Integer getId() {
@@ -35,5 +37,13 @@ public class Course {
 	}
 	public void setModules(List<Module> modules) {
 		this.modules = modules;
+	}
+
+	public User getAuthor() {
+		return author;
+	}
+
+	public void setAuthor(User author) {
+		this.author = author;
 	}
 }
