@@ -26,7 +26,7 @@ public class CourseService {
 	Course databases = new Course(345,"DataBases",
 			new User(2,"jim", "1234", "Jim", "Beam", "FACULTY"));
 	
-	List<Course> courseList = new ArrayList<Course>();
+	public static List<Course> courseList = new ArrayList<Course>();
 	{
 		courseList.add(webDev);
 		courseList.add(databases);
