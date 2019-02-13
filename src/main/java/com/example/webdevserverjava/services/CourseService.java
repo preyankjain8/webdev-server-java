@@ -7,7 +7,11 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -39,5 +43,57 @@ public class CourseService {
 		}
 		return null;
 	}
-
+	
+	@GetMapping("/api/courses")
+	public List<Course> findAllCourses(HttpSession session){
+		List<Course> tempCourseList = new ArrayList<Course>();
+		if(session.getAttribute("currentUser") != null) {
+			return null;
+		}
+		User currentAuthor = (User)session.getAttribute("currentUser");
+		for(Course course : courseList) {
+			if(course.getAuthor().equals(currentAuthor)) {
+				tempCourseList.add(course);
+			}
+		}
+		return tempCourseList;
+	}
+	
+	
+	@GetMapping("/api/courses/{cid}")
+	public Course findCourseById(@PathVariable("cid") Integer courseId){
+		for(Course course : courseList) {
+			if(course.getId().equals(courseId)) {
+				return course;
+			}
+		}
+		return null;
+	}
+	
+	@PutMapping("/api/courses/{cid}")
+	public Course updateCourse(@PathVariable("cid") Integer courseId,
+			@RequestBody Course course){
+		for(Course c : courseList) {
+			if(c.getId().equals(courseId)) {
+				c= course;
+				return c;
+			}
+		}
+		return null;
+	}
+	
+	@DeleteMapping("/api/courses/{cid}")
+	public void deleteCourse(@PathVariable("cid") Integer courseId){
+		Course deletCourseVar = null;
+		for(Course c : courseList) {
+			if(c.getId().equals(courseId)) {
+				deletCourseVar = c;
+				break;
+			}
+		}
+		
+		courseList.remove(deletCourseVar);
+	}
+	
+	
 }
