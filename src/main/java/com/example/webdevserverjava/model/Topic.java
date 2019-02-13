@@ -5,6 +5,7 @@ import java.util.List;
 public class Topic {
 	private Integer id;
 	private String title;
+	private Lesson lesson;
 	private List<Widget> widgets;
 	
 	public Topic(Integer id, String title, List<Widget> widgets) {
@@ -13,9 +14,10 @@ public class Topic {
 		this.widgets = widgets;
 	}
 	
-	public Topic(Integer id, String title) {
+	public Topic(Integer id, String title, Lesson lesson) {
 		this.id = id;
 		this.title = title;
+		this.setLesson(lesson);
 	}
 	
 	public Integer getId() {
@@ -35,5 +37,13 @@ public class Topic {
 	}
 	public void setWidgets(List<Widget> widgets) {
 		this.widgets = widgets;
+	}
+
+	public Lesson getLesson() {
+		return lesson;
+	}
+
+	public void setLesson(Lesson lesson) {
+		this.lesson = lesson;
 	}
 }

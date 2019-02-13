@@ -1,20 +1,20 @@
 package com.example.webdevserverjava.model;
 
-import java.util.List;
-
 public class Widget {
 	private Integer id;
 	private String title;
 	private String type;
 	private String text;
 	private Integer size;
+	private Topic topic;
 	
-	public Widget(Integer id, String title, String type, String text, Integer size) {
+	public Widget(Integer id, String title, String type, String text, Integer size, Topic topic) {
 		this.id = id;
 		this.title = title;
 		this.type = type;
 		this.text = text;
 		this.size = size;
+		this.setTopic(topic);
 	}
 	
 	public Integer getId() {
@@ -46,5 +46,13 @@ public class Widget {
 	}
 	public void setSize(Integer size) {
 		this.size = size;
+	}
+
+	public Topic getTopic() {
+		return topic;
+	}
+
+	public void setTopic(Topic topic) {
+		this.topic = topic;
 	}
 }

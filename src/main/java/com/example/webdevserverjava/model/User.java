@@ -1,7 +1,5 @@
 package com.example.webdevserverjava.model;
 
-import java.util.List;
-
 public class User {
 	private Integer id;
 	private String username;

@@ -5,12 +5,14 @@ import java.util.List;
 public class Lesson {
 	private Integer id;
 	private String title;
+	private Module module;
 	private List<Topic> topics;
 	
-	public Lesson(Integer id, String title, List<Topic> topics) {
+	public Lesson(Integer id, String title, List<Topic> topics, Module module) {
 		this.id = id;
 		this.title = title;
 		this.topics = topics;
+		this.setModule(module);
 	}
 	
 	public Lesson(Integer id, String title) {
@@ -35,5 +37,13 @@ public class Lesson {
 	}
 	public void setTopics(List<Topic> topics) {
 		this.topics= topics;
+	}
+
+	public Module getModule() {
+		return module;
+	}
+
+	public void setModule(Module module) {
+		this.module = module;
 	}
 }
