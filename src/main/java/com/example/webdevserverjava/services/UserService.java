@@ -1,7 +1,9 @@
 package com.example.webdevserverjava.services;
 
 import java.awt.List;
+import java.time.Instant;
 import java.util.ArrayList;
+import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
 
@@ -16,28 +18,53 @@ import com.example.webdevserverjava.model.User;
 
 @RestController
 public class UserService {
-	User alice = new User(123, "alice", "Alice", "Wonderland", "Faculty");
-	User bob   = new User(234, "bob", "Bob", "Marley", "Student");
-	java.util.List<User> userList = new ArrayList<User>();
+	User alice = new User(123, "alice", "123", "Alice", "Wonderland", "Faculty");
+	User bob   = new User(234, "bob", "345", "Bob", "Marley", "Student");
+	java.util.List<User> usersList = new ArrayList<User>();
 	UserService(){
-		userList.add(alice);
-		userList.add(bob);
+		usersList.add(alice);
+		usersList.add(bob);
 	}
 	
 	@PostMapping("/api/register")
 	public User register (@RequestBody User newUser,
 				HttpSession session) {
 		session.setAttribute("currentUser", newUser);
+		newUser.setId(Instant.now().getNano());
+		usersList.add(newUser);
 		return newUser;
 	}
 	
+	@PostMapping("/api/profile")
+	public User profile (HttpSession session) {
+		if (session.getAttribute("currentUser") != null)
+			return (User)session.getAttribute("currentUser");
+		else
+			return null;
+	}
 	
+	@PostMapping("/api/login")
+	public User login (@RequestBody User newUser,
+				HttpSession session) {
+		
+		for (User user : usersList) {
+			if (user.getUsername().equals(newUser.getUsername())
+					&& user.getPassword().equals(newUser.getPassword())){
+				session.setAttribute("currentUser", newUser);
+				return user;
+			}
+		}
+		
+		return null;
+	}
+	
+		
 	
 	@GetMapping("/api/user")
 	public User[] findAllUser() {
-		User[] userArray = new User[userList.size()];
+		User[] userArray = new User[usersList.size()];
 		int index = 0;
-		for (User user : userList) {
+		for (User user : usersList) {
 			userArray[index] = user;
 			index++;
 		}
@@ -46,7 +73,7 @@ public class UserService {
 	@GetMapping("/api/user/{userId}")
 	public User findUserById(
 			@PathVariable("userId") Integer id) {
-		for(User user: userList) {
+		for(User user: usersList) {
 			if(id == user.getId().intValue())
 				return user;
 		}
@@ -55,42 +82,42 @@ public class UserService {
 	@PostMapping("/api/user")
 	@ResponseBody
 	public User createUser(@RequestBody User user) {
-		for (User u : userList) {
+		for (User u : usersList) {
 			if(u.getUsername().equals(user.getUsername())) {
 				return new User();
 			}
 		}
-		if(!userList.isEmpty()) {
-			user.setId(userList.get(userList.size()-1).getId() + 1);
+		if(!usersList.isEmpty()) {
+			user.setId(usersList.get(usersList.size()-1).getId() + 1);
 		}
 		else {
 			user.setId(1);
 		}
-		userList.add(user);
+		usersList.add(user);
 		return user;
 	}
 	@PostMapping("/api/user/{userId}")
 	@ResponseBody
 	public User updateUser(@RequestBody User user, @PathVariable("userId") Integer id) {
 		User userToUpd = null;
-		for(User u : userList) {
+		for(User u : usersList) {
 			if (u.getId() == id.intValue()) {
-				userList.remove(u);
+				usersList.remove(u);
 				break;
 			}
 		}
 		userToUpd = user;
 		userToUpd.setId(id);
-		userList.add(userToUpd);
+		usersList.add(userToUpd);
 		return userToUpd;
 	}
 	
 	@PostMapping("/api/user/delete/{userId}")
 	@ResponseBody
 	public void deleteUser(@PathVariable("userId") Integer id) {
-		for(User u : userList) {
+		for(User u : usersList) {
 			if (u.getId() == id.intValue()) {
-				userList.remove(u);
+				usersList.remove(u);
 				break;
 			}
 		}
@@ -100,7 +127,7 @@ public class UserService {
 	@ResponseBody
 	public User[] searchUser(@RequestBody User user) {
 		java.util.List<User> tempUserList = new ArrayList<User>();
-		for(User u : userList) {
+		for(User u : usersList) {
 			if (user.getUsername() != "" && !u.getUsername().toLowerCase().contains(user.getUsername().toLowerCase())) {
 				continue;
 			}
