@@ -47,8 +47,8 @@ public class LessonService {
 	}
 	
 	
-	@GetMapping("/api/lesson/{id}")
-	public Lesson findLessonById(@PathVariable("id") Integer lessonId){
+	@GetMapping("/api/lesson/{lid}")
+	public Lesson findLessonById(@PathVariable("lid") Integer lessonId){
 		for (Lesson lesson : lessonList) {
 			if (lesson.getId().equals(lessonId)) {
 				return lesson;
@@ -57,8 +57,8 @@ public class LessonService {
 		return null;
 	}
 	
-	@DeleteMapping("/api/lesson/{id}")
-	public void DeleteLesson(@PathVariable("id") Integer lessonId){
+	@DeleteMapping("/api/lesson/{lid}")
+	public void DeleteLesson(@PathVariable("lid") Integer lessonId){
 		Lesson lessonForDeletion = null;
 		for (Lesson lesson : lessonList) {
 			if (lesson.getId().equals(lessonId)) {
