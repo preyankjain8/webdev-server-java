@@ -70,13 +70,18 @@ public class LessonService {
 	@PutMapping("/api/lessons/{lid}")
 	public Lesson updateLesson(@PathVariable("lid") Integer lessonId,
 			@RequestBody Lesson lesson){
+		Lesson lessonToEdit = null;
+		int index = 0;
 		for(Lesson l : lessonList) {
 			if(l.getId().equals(lessonId)) {
-				l = lesson;
-				return l;
+				lessonToEdit = l;
+				break;
 			}
+			index += 1;
 		}
-		return null;
+		lessonToEdit.setTitle(lesson.getTitle());
+		lessonList.set(index, lessonToEdit);
+		return lessonToEdit;
 	}
 	
 	

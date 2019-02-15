@@ -93,7 +93,7 @@ public class CourseService {
 		courseToEdit.setTitle(course.getTitle());
 		courseList.set(index, courseToEdit);
 		
-		return course;
+		return courseToEdit;
 	}
 	
 	@DeleteMapping("/api/courses/{cid}")

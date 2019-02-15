@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.webdevserverjava.model.Course;
+import com.example.webdevserverjava.model.Lesson;
 import com.example.webdevserverjava.model.Module;
 
 @RestController
@@ -78,13 +79,18 @@ public class ModuleService {
 	@PutMapping("/api/modules/{mid}")
 	public Module updateModule(@PathVariable("mid") Integer moduleId,
 			@RequestBody Module module){
+		Module moduleToEdit = null;
+		int index = 0;
 		for (Module m : moduleList) {
 			if (m.getId().equals(moduleId)) {
-				m = module;
-				return m;
+				moduleToEdit = m;
+				break;
 			}
+			index += 1;
 		}
-		return null;
+		moduleToEdit.setTitle(module.getTitle());
+		moduleList.set(index, moduleToEdit);
+		return moduleToEdit;
 	}
 	
 	

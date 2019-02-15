@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.webdevserverjava.model.Course;
 import com.example.webdevserverjava.model.Lesson;
+import com.example.webdevserverjava.model.Module;
 import com.example.webdevserverjava.model.Topic;
 
 @RestController
@@ -68,13 +69,18 @@ public class TopicService {
 	@PutMapping("/api/topic/{tid}")
 	public Topic updateTopic(@PathVariable("tid") Integer topicId,
 			@RequestBody Topic topic){
+		Topic topicToEdit = null;
+		int index = 0;
 		for(Topic t : topicList) {
 			if(t.getId().equals(topicId)) {
-				t= topic;
-				return t;
+				topicToEdit = t;
+				break;
 			}
+			index += 1;
 		}
-		return null;
+		topicToEdit.setTitle(topic.getTitle());
+		topicList.set(index, topicToEdit);
+		return topicToEdit;
 	}
 	
 	@DeleteMapping("/api/topic/{tid}")
