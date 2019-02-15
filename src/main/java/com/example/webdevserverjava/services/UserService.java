@@ -6,6 +6,8 @@ import java.util.ArrayList;
 
 import javax.servlet.http.HttpSession;
 
+import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,14 +17,26 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.webdevserverjava.model.User;
 
+@Service
 @RestController
+@CrossOrigin(origins = "http://localhost:3000",
+allowCredentials= "true")
 public class UserService {
+	private static UserService userService;
+	
 	User alice = new User(123, "alice", "123", "Alice", "Wonderland", "Faculty");
 	User bob   = new User(234, "bob", "345", "Bob", "Marley", "Student");
-	List<User> usersList = new ArrayList<User>();
-	UserService(){
+	public static List<User> usersList = new ArrayList<User>();
+	
+	public UserService() {
 		usersList.add(alice);
 		usersList.add(bob);
+		userService = this;
+	}
+	public static UserService getInstance() {
+		if(userService == null)
+			userService = new UserService();
+		return userService;
 	}
 	
 	@PostMapping("/api/register")

@@ -20,6 +20,11 @@ public class Module {
 		this.setCourse(course);
 	}
 	
+	
+	public Module() {
+		
+	}
+	
 	public Integer getId() {
 		return id;
 	}

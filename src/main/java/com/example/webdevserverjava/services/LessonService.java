@@ -3,24 +3,32 @@ package com.example.webdevserverjava.services;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.context.annotation.DependsOn;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.example.webdevserverjava.model.Lesson;
 import com.example.webdevserverjava.model.Module;
 
+@RestController
+@CrossOrigin(origins = "http://localhost:3000",
+allowCredentials= "true",
+allowedHeaders = "*")
 public class LessonService {
-	Lesson lesson1 = new Lesson(123,"Lesson 1", ModuleService.moduleList.get(0));
-	Lesson lesson2 = new Lesson(123,"Lesson 2", ModuleService.moduleList.get(0));
-	
-	public static List<Lesson> lessonList = new ArrayList<Lesson>();
 	{
+		ModuleService.getInstance();
+		Lesson lesson1 = new Lesson(123,"Lesson 1", ModuleService.moduleList.get(0));
+		Lesson lesson2 = new Lesson(234,"Lesson 2", ModuleService.moduleList.get(0));
 		lessonList.add(lesson1);
 		lessonList.add(lesson2);
-	};
+	}
+	
+	public static List<Lesson> lessonList = new ArrayList<Lesson>();
 	
 	@PostMapping("/api/module/{mid}/lesson")
 	public Lesson createLesson(@PathVariable("mid") Integer moduleId,

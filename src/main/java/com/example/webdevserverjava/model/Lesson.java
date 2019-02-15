@@ -20,6 +20,10 @@ public class Lesson {
 		this.module = module;
 	}
 	
+	public Lesson() {
+		
+	}
+	
 	public Integer getId() {
 		return id;
 	}

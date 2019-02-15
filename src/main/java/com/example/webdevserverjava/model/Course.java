@@ -8,6 +8,9 @@ public class Course {
 	private User author;
 	private List<Module> modules;
 	
+	public Course () {
+		
+	}
 	public Course(Integer id, String title, List<Module> modules) {
 		this.id = id;
 		this.title = title;

@@ -7,12 +7,14 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.webdevserverjava.model.User;
@@ -20,20 +22,26 @@ import com.example.webdevserverjava.model.User;
 import com.example.webdevserverjava.model.Course;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:3000",
+allowCredentials= "true",
+allowedHeaders = "*")
 public class CourseService {
-	Course webDev = new Course(123,"WebDev", 
-			new User(1,"jack", "1234", "Jack", "Daniel", "FACULTY"));
-	Course databases = new Course(345,"DataBases",
-			new User(2,"jim", "1234", "Jim", "Beam", "FACULTY"));
-	
-	public static List<Course> courseList = new ArrayList<Course>();
+	Course webDev;
+	Course databases;
 	{
+		UserService.getInstance();
+		webDev = new Course(123,"WebDev", UserService.usersList.get(0));
+		databases = new Course(345,"DataBases",UserService.usersList.get(0));
 		courseList.add(webDev);
 		courseList.add(databases);
-	};
+	}
 	
+	public static List<Course> courseList = new ArrayList<Course>();
+	public CourseService() {
+	}	
 	
 	@PostMapping("/api/courses")
+	@ResponseBody
 	public Course createCourse(@RequestBody Course newCourse,
 			HttpSession session){
 		if(session.getAttribute("currentUser") != null) {
@@ -47,7 +55,7 @@ public class CourseService {
 	@GetMapping("/api/courses")
 	public List<Course> findAllCourses(HttpSession session){
 		List<Course> tempCourseList = new ArrayList<Course>();
-		if(session.getAttribute("currentUser") != null) {
+		if(session.getAttribute("currentUser") == null) {
 			return null;
 		}
 		User currentAuthor = (User)session.getAttribute("currentUser");

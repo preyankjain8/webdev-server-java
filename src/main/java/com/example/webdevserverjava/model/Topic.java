@@ -20,6 +20,10 @@ public class Topic {
 		this.setLesson(lesson);
 	}
 	
+	public Topic() {
+		
+	}
+	
 	public Integer getId() {
 		return id;
 	}
