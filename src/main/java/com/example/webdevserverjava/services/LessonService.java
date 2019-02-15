@@ -67,7 +67,7 @@ public class LessonService {
 		return null;
 	}
 	
-	@PutMapping("/api/lesson/{lid}")
+	@PutMapping("/api/lessons/{lid}")
 	public Lesson updateLesson(@PathVariable("lid") Integer lessonId,
 			@RequestBody Lesson lesson){
 		for(Lesson l : lessonList) {

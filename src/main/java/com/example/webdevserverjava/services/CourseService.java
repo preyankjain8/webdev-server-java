@@ -81,13 +81,19 @@ public class CourseService {
 	@PutMapping("/api/courses/{cid}")
 	public Course updateCourse(@PathVariable("cid") Integer courseId,
 			@RequestBody Course course){
+		int index = 0;
+		Course courseToEdit = null;
 		for(Course c : courseList) {
 			if(c.getId().equals(courseId)) {
-				c= course;
-				return c;
+				courseToEdit = c;
+				break;
 			}
+			index += 1;
 		}
-		return null;
+		courseToEdit.setTitle(course.getTitle());
+		courseList.set(index, courseToEdit);
+		
+		return course;
 	}
 	
 	@DeleteMapping("/api/courses/{cid}")
