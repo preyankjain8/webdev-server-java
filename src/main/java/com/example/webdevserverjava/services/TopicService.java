@@ -28,10 +28,8 @@ public class TopicService {
 		LessonService.getInstance();
 		Topic topic1 = new Topic(123,"Topic 1", LessonService.lessonList.get(0));
 		Topic topic2 = new Topic(234,"Topic 2", LessonService.lessonList.get(0));
-		if(topicList.size() == 0)
-			topicList.add(topic1);
-		if(topicList.size() == 1)
-			topicList.add(topic2);
+		topicList.add(topic1);
+		topicList.add(topic2);
 	}
 	
 	public static List<Topic> topicList = new ArrayList<Topic>();
