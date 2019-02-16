@@ -20,7 +20,7 @@ import com.example.webdevserverjava.model.Lesson;
 import com.example.webdevserverjava.model.Module;
 
 @RestController
-@CrossOrigin(origins = "https://polar-cliffs-65655.herokuapp.com/",
+@CrossOrigin(origins = "https://polar-cliffs-65655.herokuapp.com",
 //@CrossOrigin(origins = "http://localhost:3000",
 allowCredentials= "true",
 allowedHeaders = "*")
