@@ -19,8 +19,8 @@ import com.example.webdevserverjava.model.Course;
 import com.example.webdevserverjava.model.Lesson;
 import com.example.webdevserverjava.model.Module;
 
-@CrossOrigin(origins = "*",
 //@CrossOrigin(origins = "http://localhost:3000",
+@CrossOrigin(origins = "*",
 allowCredentials= "true",
 allowedHeaders = "*")
 @RestController
