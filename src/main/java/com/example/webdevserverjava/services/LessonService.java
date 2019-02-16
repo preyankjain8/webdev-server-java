@@ -19,10 +19,10 @@ import com.example.webdevserverjava.model.Module;
 
 
 //@CrossOrigin(origins = "http://localhost:3000",
+@RestController
 @CrossOrigin(origins = "*",
 allowCredentials= "true",
 allowedHeaders = "*")
-@RestController
 public class LessonService {
 	{
 		ModuleService.getInstance();

@@ -17,9 +17,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.webdevserverjava.model.User;
 
 //@CrossOrigin(origins = "http://localhost:3000",
+@RestController
 @CrossOrigin(origins = "*",
 allowCredentials= "true")
-@RestController
 public class UserService {
 	private static UserService userService;
 	

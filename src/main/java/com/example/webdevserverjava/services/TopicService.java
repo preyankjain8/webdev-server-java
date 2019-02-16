@@ -19,10 +19,10 @@ import com.example.webdevserverjava.model.Module;
 import com.example.webdevserverjava.model.Topic;
 
 //@CrossOrigin(origins = "http://localhost:3000",
+@RestController
 @CrossOrigin(origins = "*",
 allowCredentials= "true",
 allowedHeaders = "*")
-@RestController
 public class TopicService {
 	Topic topic1 = new Topic(123,"Topic 1", LessonService.lessonList.get(0));
 	Topic topic2 = new Topic(234,"Topic 2", LessonService.lessonList.get(0));

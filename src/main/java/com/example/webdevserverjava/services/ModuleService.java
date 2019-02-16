@@ -20,10 +20,10 @@ import com.example.webdevserverjava.model.Lesson;
 import com.example.webdevserverjava.model.Module;
 
 //@CrossOrigin(origins = "http://localhost:3000",
+@RestController
 @CrossOrigin(origins = "*",
 allowCredentials= "true",
 allowedHeaders = "*")
-@RestController
 public class ModuleService {
 	private static ModuleService moduleService;
 	Module react = new Module(123,"React", CourseService.courseList.get(0));
