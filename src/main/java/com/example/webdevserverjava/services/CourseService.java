@@ -25,6 +25,7 @@ import com.example.webdevserverjava.model.Course;
 allowCredentials= "true",
 allowedHeaders = "*")
 public class CourseService {
+	private static CourseService courseService;
 	Course webDev;
 	Course databases;
 	{
@@ -33,6 +34,12 @@ public class CourseService {
 		databases = new Course(345,"DataBases",UserService.usersList.get(0));
 		courseList.add(webDev);
 		courseList.add(databases);
+	}
+	
+	public static CourseService getInstance() {
+		if(courseService == null)
+			courseService = new CourseService();
+		return courseService;
 	}
 	
 	public static List<Course> courseList = new ArrayList<Course>();

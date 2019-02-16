@@ -31,6 +31,7 @@ public class ModuleService {
 	
 	public static List<Module> moduleList = new ArrayList<Module>();
 	{
+		CourseService.getInstance();
 		if(moduleList.size() ==  0)
 			moduleList.add(react);
 		if(moduleList.size() ==  1)
