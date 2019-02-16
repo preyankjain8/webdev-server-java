@@ -32,8 +32,10 @@ public class CourseService {
 		UserService.getInstance();
 		webDev = new Course(123,"WebDev", UserService.usersList.get(0));
 		databases = new Course(345,"DataBases",UserService.usersList.get(0));
-		courseList.add(webDev);
-		courseList.add(databases);
+		if(courseList.size() == 0)
+			courseList.add(webDev);
+		if(courseList.size() == 1)
+			courseList.add(databases);
 	}
 	
 	public static CourseService getInstance() {
