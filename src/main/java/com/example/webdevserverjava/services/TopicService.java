@@ -24,14 +24,17 @@ import com.example.webdevserverjava.model.Topic;
 allowCredentials= "true",
 allowedHeaders = "*")
 public class TopicService {
-	Topic topic1 = new Topic(123,"Topic 1", LessonService.lessonList.get(0));
-	Topic topic2 = new Topic(234,"Topic 2", LessonService.lessonList.get(0));
+	{
+		ModuleService.getInstance();
+		Topic topic1 = new Topic(123,"Topic 1", LessonService.lessonList.get(0));
+		Topic topic2 = new Topic(234,"Topic 2", LessonService.lessonList.get(0));
+		if(topicList.size() == 0)
+			topicList.add(topic1);
+		if(topicList.size() == 1)
+			topicList.add(topic2);
+	}
 	
 	public static List<Topic> topicList = new ArrayList<Topic>();
-	{
-		topicList.add(topic1);
-		topicList.add(topic2);
-	};
 	
 	@PostMapping("/api/lesson/{lid}/topic")
 	public Topic createTopic(@PathVariable("lid") Integer lessonId,

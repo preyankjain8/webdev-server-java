@@ -23,12 +23,19 @@ import com.example.webdevserverjava.model.Module;
 allowCredentials= "true",
 allowedHeaders = "*")
 public class LessonService {
+	private static LessonService lessonService;
 	{
 		ModuleService.getInstance();
 		Lesson lesson1 = new Lesson(123,"Lesson 1", ModuleService.moduleList.get(0));
 		Lesson lesson2 = new Lesson(234,"Lesson 2", ModuleService.moduleList.get(0));
 		lessonList.add(lesson1);
 		lessonList.add(lesson2);
+	}
+	
+	public static LessonService getInstance() {
+		if(lessonService == null)
+			lessonService = new LessonService();
+		return lessonService;
 	}
 	
 	public static List<Lesson> lessonList = new ArrayList<Lesson>();
