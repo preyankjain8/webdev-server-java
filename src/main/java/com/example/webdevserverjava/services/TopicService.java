@@ -19,7 +19,8 @@ import com.example.webdevserverjava.model.Module;
 import com.example.webdevserverjava.model.Topic;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000",
+@CrossOrigin(origins = "https://polar-cliffs-65655.herokuapp.com",
+//@CrossOrigin(origins = "http://localhost:3000",
 allowCredentials= "true",
 allowedHeaders = "*")
 public class TopicService {

@@ -1,7 +1,5 @@
 package com.example.webdevserverjava.services;
 
-import static org.hamcrest.CoreMatchers.nullValue;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,7 +20,8 @@ import com.example.webdevserverjava.model.User;
 import com.example.webdevserverjava.model.Course;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000",
+@CrossOrigin(origins = "https://polar-cliffs-65655.herokuapp.com",
+//@CrossOrigin(origins = "http://localhost:3000",
 allowCredentials= "true",
 allowedHeaders = "*")
 public class CourseService {
