@@ -19,13 +19,11 @@ import com.example.webdevserverjava.model.User;
 
 import com.example.webdevserverjava.model.Course;
 
-
-
-//@CrossOrigin(origins = "http://localhost:3000",
-@RestController
 @CrossOrigin(origins = "*",
+//@CrossOrigin(origins = "http://localhost:3000",
 allowCredentials= "true",
 allowedHeaders = "*")
+@RestController
 public class CourseService {
 	Course webDev;
 	Course databases;
