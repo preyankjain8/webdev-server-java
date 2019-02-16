@@ -19,11 +19,11 @@ import com.example.webdevserverjava.model.Course;
 import com.example.webdevserverjava.model.Lesson;
 import com.example.webdevserverjava.model.Module;
 
-@RestController
 @CrossOrigin(origins = "https://polar-cliffs-65655.herokuapp.com",
 //@CrossOrigin(origins = "http://localhost:3000",
 allowCredentials= "true",
 allowedHeaders = "*")
+@RestController
 public class ModuleService {
 	private static ModuleService moduleService;
 	Module react = new Module(123,"React", CourseService.courseList.get(0));
