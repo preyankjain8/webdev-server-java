@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.webdevserverjava.model.User;
 
-@CrossOrigin(origins = "http://polar-cliffs-65655.herokuapp.com",
+@CrossOrigin(origins = "*",
 //@CrossOrigin(origins = "http://localhost:3000",
 allowCredentials= "true")
 @RestController

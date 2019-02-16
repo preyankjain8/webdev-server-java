@@ -19,7 +19,7 @@ import com.example.webdevserverjava.model.User;
 
 import com.example.webdevserverjava.model.Course;
 
-@CrossOrigin(origins = "http://polar-cliffs-65655.herokuapp.com",
+@CrossOrigin(origins = "*",
 //@CrossOrigin(origins = "http://localhost:3000",
 allowCredentials= "true",
 allowedHeaders = "*")
