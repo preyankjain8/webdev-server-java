@@ -25,19 +25,22 @@ import com.example.webdevserverjava.model.Module;
 allowCredentials= "true",
 allowedHeaders = "*")
 public class ModuleService {
-	private static ModuleService moduleService;
-	Module react = new Module(123,"React", CourseService.courseList.get(0));
-	Module redux = new Module(234,"Redux", CourseService.courseList.get(0));
-	
-	public static List<Module> moduleList = new ArrayList<Module>();
+	Module react;
+	Module redux;
 	{
 		CourseService.getInstance();
+		react = new Module(123,"React", CourseService.courseList.get(0));
+		redux = new Module(234,"Redux", CourseService.courseList.get(0));
 		if(moduleList.size() ==  0)
 			moduleList.add(react);
 		if(moduleList.size() ==  1)
 			moduleList.add(redux);
 		
 	};
+	private static ModuleService moduleService;
+	
+	public static List<Module> moduleList = new ArrayList<Module>();
+	
 	
 	public static ModuleService getInstance() {
 		if (moduleService == null)
