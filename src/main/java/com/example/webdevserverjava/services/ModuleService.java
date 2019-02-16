@@ -3,6 +3,8 @@ package com.example.webdevserverjava.services;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.context.annotation.DependsOn;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -55,7 +57,11 @@ public class ModuleService {
 	}
 	
 	@GetMapping("/api/course/{cid}/modules")
-	public List<Module> findAllModules(@PathVariable("cid") Integer courseId){
+	public List<Module> findAllModules(@PathVariable("cid") Integer courseId,
+			HttpSession session){
+		if(session.getAttribute("currentUser") == null) {
+			return null;
+		}
 		List<Module> moduleListTemp = new ArrayList<Module>();
 		for (Module module : moduleList) {
 			if (module.getCourse().getId().equals(courseId)) {
