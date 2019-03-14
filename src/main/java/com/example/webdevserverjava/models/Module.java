@@ -1,4 +1,4 @@
-package com.example.webdevserverjava.model;
+package com.example.webdevserverjava.models;
 
 import java.util.List;
 

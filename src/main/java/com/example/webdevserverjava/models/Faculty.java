@@ -1,4 +1,4 @@
-package com.example.webdevserverjava.model;
+package com.example.webdevserverjava.models;
 
 public class Faculty extends User{
 	private Integer id;

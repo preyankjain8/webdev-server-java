@@ -15,9 +15,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.webdevserverjava.model.User;
-
-import com.example.webdevserverjava.model.Course;
+import com.example.webdevserverjava.models.Course;
+import com.example.webdevserverjava.models.User;
 
 @RestController
 @CrossOrigin(origins = "https://polar-cliffs-65655.herokuapp.com",

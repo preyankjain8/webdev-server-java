@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.webdevserverjava.model.User;
+import com.example.webdevserverjava.models.User;
 
 @RestController
 @CrossOrigin(origins = "*",

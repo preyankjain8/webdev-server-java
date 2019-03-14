@@ -15,9 +15,9 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.webdevserverjava.model.Course;
-import com.example.webdevserverjava.model.Lesson;
-import com.example.webdevserverjava.model.Module;
+import com.example.webdevserverjava.models.Course;
+import com.example.webdevserverjava.models.Lesson;
+import com.example.webdevserverjava.models.Module;
 
 @RestController
 @CrossOrigin(origins = "*",
