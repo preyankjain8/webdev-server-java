@@ -10,10 +10,10 @@ public class Widget {
 	@GeneratedValue
 	(strategy=GenerationType.IDENTITY)
 	private Integer id;
-	private String title;
-	private String type;
-	private String text;
-	private Integer size;
+	public String title;
+	public String type;
+	public String text;
+	public Integer size;
 	@ManyToOne()
 	@JsonIgnore
 	private Topic topic;
@@ -26,8 +26,13 @@ public class Widget {
 		this.title = title;
 		this.type = type;
 		this.text = text;
-		this.size = size;
 		this.setTopic(topic);
+	}
+	
+	public void set(Widget widget) {
+		this.title = widget.title;
+		this.text = widget.text;
+		this.type = widget.type;
 	}
 	
 	public Integer getId() {

@@ -8,7 +8,13 @@ public class HeadingWidget extends Widget{
 	public Integer getSize() {
 		return size;
 	}
-
+	
+	public void set(Widget widget) {
+		this.title = widget.title;
+		this.text = widget.text;
+		this.size = widget.size;
+	}
+	
 	public void setSize(Integer size) {
 		this.size = size;
 	}

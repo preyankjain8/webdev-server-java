@@ -71,6 +71,7 @@ public class TopicService {
 	public Widget createWidget(@PathVariable("tid") Integer topicId,
 			@RequestBody Widget widget){
 		Topic topic = topicRepository.findById(topicId).get();
+		widget.setType("HEADING");
 		widget.setTopic(topic);
 		return widgetRepository.save(widget);
 	}
