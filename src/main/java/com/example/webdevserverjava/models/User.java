@@ -1,4 +1,6 @@
 package com.example.webdevserverjava.models;
+import java.util.List;
+
 import javax.persistence.*;
 
 @Entity
@@ -13,6 +15,20 @@ public class User {
 	private String lastName;
 	private String role;
 	
+	@OneToMany(mappedBy="author")
+	private List<Course> authoredCourses;
+	
+	public void authoredCourse(Course course) {
+		this.authoredCourses.add(course);
+	     if(course.getAuthor() != this) {
+	        course.setAuthor(this);
+	        }
+	}
+	
+	public List<Course> getAuthoredCourses() {
+		return this.authoredCourses;
+	}
+	
 	public User() {}
 	public User(int id, String username, String password, String firstName, String lastName, String role) {
 		this.id = id;
@@ -22,6 +38,14 @@ public class User {
 		this.lastName = lastName;
 		this.role = role;
 	}
+	
+	public void set(User newUser) {
+		this.username = newUser.username;
+		this.password = newUser.password;
+		this.firstName = newUser.firstName;
+		this.lastName = newUser.lastName;
+	}
+	
 	public Integer getId() {
 		return id;
 	}

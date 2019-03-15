@@ -1,12 +1,31 @@
 package com.example.webdevserverjava.models;
+import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.util.List;
 
+@Entity
 public class Course {
+	@Id
+	@GeneratedValue
+	(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	private String title;
+	
+	@ManyToOne()
+	@JsonIgnore
 	private User author;
+	
+	@OneToMany(mappedBy="course")
 	private List<Module> modules;
+	
+	public void module(Module module) {
+		this.modules.add(module);
+	     if(module.getCourse() != this) {
+	        module.setCourse(this);
+	        }
+	}
 	
 	public Course () {
 		
@@ -46,7 +65,13 @@ public class Course {
 		return author;
 	}
 
+	public void set(Course newCourse) {
+		this.title = newCourse.title;
+	}
 	public void setAuthor(User author) {
 		this.author = author;
+		if(!author.getAuthoredCourses().contains(this)) {
+			author.getAuthoredCourses().add(this);
+		}
 	}
 }

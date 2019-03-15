@@ -1,6 +1,15 @@
 package com.example.webdevserverjava.models;
 
-public class HeadingWidget {
-	private Integer id;
+import javax.persistence.Entity;
+
+@Entity
+public class HeadingWidget extends Widget{
 	private Integer size;
+	public Integer getSize() {
+		return size;
+	}
+
+	public void setSize(Integer size) {
+		this.size = size;
+	}
 }

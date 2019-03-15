@@ -1,49 +1,33 @@
 package com.example.webdevserverjava.models;
 
-public class Faculty extends User{
-	private Integer id;
-	private String username;
-	private String password;
-	private String firstName;
-	private String lastName;
+import java.util.List;
+
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+
+public class Faculty {
+	private String office;
+	private Boolean tenure;
+	
+	@OneToMany(mappedBy="author")
+	private List<Course> authoredCourses;
 	
 	public Faculty() {}
-	public Faculty(int id, String username, String password, String firstName, String lastName) {
-		this.id = id;
-		this.password = password;
-		this.username = username;
-		this.firstName = firstName;
-		this.lastName = lastName;
+	public Faculty(String office, Boolean tenure) {
+		this.office = office;
+		this.tenure = tenure;
 	}
 	
-	public Integer getId() {
-		return id;
+	public String getOffice() {
+		return office;
 	}
-	public void setId(Integer id) {
-		this.id = id;
+	public void setOffice(String office) {
+		this.office = office;
 	}
-	public String getUsername() {
-		return username;
+	public Boolean getTenure() {
+		return tenure;
 	}
-	public void setUsername(String username) {
-		this.username = username;
-	}
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
-	}
-	public String getFirstName() {
-		return firstName;
-	}
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-	public String getLastName() {
-		return lastName;
-	}
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
+	public void setTenure(Boolean tenure) {
+		this.tenure = tenure;
 	}
 }

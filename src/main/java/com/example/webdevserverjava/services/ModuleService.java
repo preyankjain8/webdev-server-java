@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.DependsOn;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -18,6 +19,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.webdevserverjava.models.Course;
 import com.example.webdevserverjava.models.Lesson;
 import com.example.webdevserverjava.models.Module;
+import com.example.webdevserverjava.repositories.CourseRepository;
+import com.example.webdevserverjava.repositories.LessonRepository;
+import com.example.webdevserverjava.repositories.ModuleRepository;
 
 @RestController
 @CrossOrigin(origins = "*",
@@ -25,40 +29,18 @@ import com.example.webdevserverjava.models.Module;
 allowCredentials= "true",
 allowedHeaders = "*")
 public class ModuleService {
-	Module react;
-	Module redux;
-	{
-		CourseService.getInstance();
-		react = new Module(123,"React", CourseService.courseList.get(0));
-		redux = new Module(234,"Redux", CourseService.courseList.get(0));
-		if(moduleList.size() ==  0)
-			moduleList.add(react);
-		if(moduleList.size() ==  1)
-			moduleList.add(redux);
-		
-	};
-	private static ModuleService moduleService;
-	
-	public static List<Module> moduleList = new ArrayList<Module>();
-	
-	
-	public static ModuleService getInstance() {
-		if (moduleService == null)
-			moduleService = new ModuleService();
-		return moduleService;
-	}
-	
+	@Autowired
+	private ModuleRepository moduleRepository;
+	@Autowired
+	private CourseRepository courseRepository;
+	@Autowired
+	private LessonRepository lessonRepository;
 	@PostMapping("/api/courses/{cid}/modules")
 	public Module createModule(@PathVariable("cid") Integer courseId,
 			@RequestBody Module module){
-		for (Course course : CourseService.courseList) {
-			if (course.getId().equals(courseId)) {
-				module.setCourse(course);
-				moduleList.add(module);
-				return module;
-			}
-		}
-		return null;
+		Course course = courseRepository.findById(courseId).get();
+		module.setCourse(course);
+		return moduleRepository.save(module);
 	}
 	
 	@GetMapping("/api/course/{cid}/modules")
@@ -67,54 +49,28 @@ public class ModuleService {
 		if(session.getAttribute("currentUser") == null) {
 			return null;
 		}
-		List<Module> moduleListTemp = new ArrayList<Module>();
-		for (Module module : moduleList) {
-			if (module.getCourse().getId().equals(courseId)) {
-				moduleListTemp.add(module);
-			}
-		}
-		return moduleListTemp;
+		return courseRepository.findById(courseId).get().getModules();
 	}
 	
 	
 	@GetMapping("/api/modules/{mid}")
 	public Module findModuleById(@PathVariable("mid") Integer moduleId){
-		for (Module module : moduleList) {
-			if (module.getId().equals(moduleId)) {
-				return module;
-			}
-		}
-		return null;
+		return moduleRepository.findById(moduleId).get();
 	}
 	
 	@PutMapping("/api/modules/{mid}")
 	public Module updateModule(@PathVariable("mid") Integer moduleId,
 			@RequestBody Module module){
-		Module moduleToEdit = null;
-		int index = 0;
-		for (Module m : moduleList) {
-			if (m.getId().equals(moduleId)) {
-				moduleToEdit = m;
-				break;
-			}
-			index += 1;
-		}
-		moduleToEdit.setTitle(module.getTitle());
-		moduleList.set(index, moduleToEdit);
-		return moduleToEdit;
+		Module m = moduleRepository.findById(moduleId).get();
+		m.set(module);
+		return moduleRepository.save(m);
 	}
 	
 	
 	@DeleteMapping("/api/modules/{mid}")
 	public void deleteModule(@PathVariable("mid") Integer moduleId){
-		Module moduleForDeletion = null;
-		for (Module module : moduleList) {
-			if (module.getId().equals(moduleId)) {
-				moduleForDeletion = module;
-				break;
-			}
-		}
-		moduleList.remove(moduleForDeletion);
+		lessonRepository.deleteAll(moduleRepository.findById(moduleId).get().getLessons());
+		moduleRepository.deleteById(moduleId);
 	}
 	
 }

@@ -2,11 +2,34 @@ package com.example.webdevserverjava.models;
 
 import java.util.List;
 
+import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+@Entity
 public class Lesson {
+	@Id
+	@GeneratedValue
+	(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	private String title;
+	@ManyToOne()
+	@JsonIgnore
 	private Module module;
+	@OneToMany(mappedBy="lesson")
 	private List<Topic> topics;
+	
+	
+	public void topic(Topic topic) {
+		this.topics.add(topic);
+	     if(topic.getLesson() != this) {
+	        topic.setLesson(this);
+	        }
+	}
+	
+	public void set(Lesson lesson) {
+		this.title = lesson.title;
+	}
 	
 	public Lesson(Integer id, String title, List<Topic> topics) {
 		this.id = id;
@@ -49,5 +72,8 @@ public class Lesson {
 
 	public void setModule(Module module) {
 		this.module = module;
+		if(!module.getLessons().contains(this)) {
+			module.getLessons().add(this);
+		}
 	}
 }
