@@ -9,7 +9,15 @@ public class ParagraphWidget extends Widget{
 	public String getText() {
 		return text;
 	}
-
+	
+	public void getParagraphWidget(Widget 	widget) {
+		this.id = widget.id;
+		this.title = widget.title;
+		this.text = widget.text;
+		this.type = "PARAGRAPH";
+		this.topic = widget.topic;
+	}
+	
 	public void set(Widget widget) {
 		this.title = widget.title;
 		this.text = widget.text;

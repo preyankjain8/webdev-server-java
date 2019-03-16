@@ -6,6 +6,15 @@ import javax.persistence.Entity;
 public class ImageWidget extends Widget{
 	String src;
 	
+	
+	public void getImageWidget(Widget widget) {
+		this.id = widget.id;
+		this.title = widget.title;
+		this.src = widget.text;
+		this.type = "IMAGE";
+		this.topic = widget.topic;
+	}
+	
 	public void set(Widget widget) {
 		this.title = widget.title;
 		this.src = widget.text;

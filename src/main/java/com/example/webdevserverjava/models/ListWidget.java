@@ -7,6 +7,19 @@ public class ListWidget extends Widget{
 	private String[] items;
 	private Boolean ordered;
 	
+	public void getListWidget(Widget widget) {
+		this.id = widget.id;
+		this.title = widget.title;
+		if (widget.size == 6) {
+			this.ordered = false;
+		}
+		else if (widget.size == 7) {
+			this.ordered = true;
+		}
+		this.text = widget.text;
+		this.type = "LIST";
+	}
+	
 	public void set(Widget widget) {
 		this.title = widget.title;
 		if (widget.size == 6) {
@@ -17,6 +30,7 @@ public class ListWidget extends Widget{
 		}
 		this.text = widget.text;
 		this.type = widget.type;
+		this.topic = widget.topic;
 	}
 	
 	public String[] getItems() {

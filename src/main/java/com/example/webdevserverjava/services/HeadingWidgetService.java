@@ -1,5 +1,7 @@
 package com.example.webdevserverjava.services;
 
+import java.util.NoSuchElementException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -13,7 +15,9 @@ import com.example.webdevserverjava.models.HeadingWidget;
 import com.example.webdevserverjava.models.ParagraphWidget;
 import com.example.webdevserverjava.models.Widget;
 import com.example.webdevserverjava.repositories.HeadingWidgetRepository;
+import com.example.webdevserverjava.repositories.ListWidgetRepository;
 import com.example.webdevserverjava.repositories.ParagraphWidgetRepository;
+import com.example.webdevserverjava.repositories.WidgetRepository;
 
 @RestController
 @CrossOrigin(origins = "*",
@@ -23,6 +27,8 @@ allowedHeaders = "*")
 public class HeadingWidgetService {
 	@Autowired
 	private HeadingWidgetRepository headingWidgetRepository;
+	@Autowired
+	private WidgetRepository widgetRepository;
 	
 	@GetMapping("/api/heading/widget/{wid}")
 	public Widget findWidgetById(@PathVariable("wid") Integer widgetId){
@@ -32,7 +38,17 @@ public class HeadingWidgetService {
 	@PutMapping("/api/heading/widget/{wid}")
 	public Widget updateWidget(@PathVariable("wid") Integer widgetId,
 			@RequestBody Widget widget){
-		HeadingWidget w = headingWidgetRepository.findById(widgetId).get();
+		HeadingWidget w = null;
+		try {
+			w = headingWidgetRepository.findById(widgetId).get();
+		} catch (NoSuchElementException ex) {
+			if (w == null) {
+				w = new HeadingWidget();
+				Widget widg = widgetRepository.findById(widgetId).get();
+				w.getHeadingWidget(widg);
+				widgetRepository.deleteById(widgetId);
+			}
+		}
 		w.set(widget);
 		return headingWidgetRepository.save(w);
 	}
