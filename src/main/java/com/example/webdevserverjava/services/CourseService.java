@@ -72,7 +72,7 @@ public class CourseService {
 	
 	@DeleteMapping("/api/courses/{cid}")
 	public void deleteCourse(@PathVariable("cid") Integer courseId){
-		moduleRepository.deleteAll(courseRepository.findById(courseId).get().getModules());
+		//moduleRepository.deleteAll(courseRepository.findById(courseId).get().getModules());
 		courseRepository.deleteById(courseId);
 	}
 	

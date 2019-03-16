@@ -15,7 +15,8 @@ public class User {
 	private String lastName;
 	private String role;
 	
-	@OneToMany(mappedBy="author")
+	@OneToMany(mappedBy="author", cascade = CascadeType.REMOVE,
+			orphanRemoval = true)
 	private List<Course> authoredCourses;
 	
 	public void authoredCourse(Course course) {

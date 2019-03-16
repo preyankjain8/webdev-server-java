@@ -11,7 +11,6 @@ public class ParagraphWidget extends Widget{
 	}
 	
 	public void getParagraphWidget(Widget 	widget) {
-		this.id = widget.id;
 		this.title = widget.title;
 		this.text = widget.text;
 		this.type = "PARAGRAPH";

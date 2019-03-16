@@ -41,10 +41,10 @@ public class Widget {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	public String getTitle() {
+	public String getName() {
 		return title;
 	}
-	public void setTitle(String title) {
+	public void setName(String title) {
 		this.title = title;
 	}
 	public String getType() {

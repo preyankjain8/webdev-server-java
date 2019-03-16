@@ -29,14 +29,13 @@ public class UserService {
 	@PostMapping("/api/register")
 	public User register (@RequestBody User newUser,
 				HttpSession session) {
-		
 		for (User user : userRepository.findAll()) {
 			if (user.getUsername().equals(newUser.getUsername()))
 				return null;
 		}
-		User user = userRepository.save(newUser);
-		session.setAttribute("currentUser", user);
-		return user;
+		User user1 = userRepository.save(newUser);
+		session.setAttribute("currentUser", user1);
+		return user1;
 	}
 	
 	@PostMapping("/api/profile")

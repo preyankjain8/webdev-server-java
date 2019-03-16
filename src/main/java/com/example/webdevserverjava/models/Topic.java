@@ -16,7 +16,8 @@ public class Topic {
 	@ManyToOne()
 	@JsonIgnore
 	private Lesson lesson;
-	@OneToMany(mappedBy="topic")
+	@OneToMany(mappedBy="topic", cascade = CascadeType.REMOVE,
+			orphanRemoval = true)
 	private List<Widget> widgets;
 	
 	

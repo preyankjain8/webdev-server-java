@@ -69,7 +69,7 @@ public class ModuleService {
 	
 	@DeleteMapping("/api/modules/{mid}")
 	public void deleteModule(@PathVariable("mid") Integer moduleId){
-		lessonRepository.deleteAll(moduleRepository.findById(moduleId).get().getLessons());
+		//lessonRepository.deleteAll(moduleRepository.findById(moduleId).get().getLessons());
 		moduleRepository.deleteById(moduleId);
 	}
 	

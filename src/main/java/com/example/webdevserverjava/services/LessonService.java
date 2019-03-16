@@ -59,7 +59,7 @@ public class LessonService {
 	
 	@DeleteMapping("/api/lesson/{lid}")
 	public void DeleteLesson(@PathVariable("lid") Integer lessonId){
-		topicRepository.deleteAll(lessonRepository.findById(lessonId).get().getTopics());
+		//topicRepository.deleteAll(lessonRepository.findById(lessonId).get().getTopics())	;
 		lessonRepository.deleteById(lessonId);
 		
 	}

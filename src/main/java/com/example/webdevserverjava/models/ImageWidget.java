@@ -8,15 +8,16 @@ public class ImageWidget extends Widget{
 	
 	
 	public void getImageWidget(Widget widget) {
-		this.id = widget.id;
 		this.title = widget.title;
 		this.src = widget.text;
+		this.text = widget.text;
 		this.type = "IMAGE";
 		this.topic = widget.topic;
 	}
 	
 	public void set(Widget widget) {
 		this.title = widget.title;
+		this.text = widget.text;
 		this.src = widget.text;
 		this.type = widget.type;
 	}

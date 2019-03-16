@@ -17,7 +17,8 @@ public class Module {
 	@ManyToOne()
 	@JsonIgnore
 	private Course course;
-	@OneToMany(mappedBy="module")
+	@OneToMany(mappedBy="module", cascade = CascadeType.REMOVE,
+			orphanRemoval = true)
 	private List<Lesson> lessons;
 	
 	public void lesson(Lesson lesson) {
